@@ -17,6 +17,10 @@ def place_list(request):
     new_place_form = NewPlaceForm()
     return render (request, 'travel_wishlist/wishlist.html', {'places': places, 'new_place_form': new_place_form})
 
+def places_visited(request):
+    visited = Place.objects.filter(visited=True)
+    return render(request, 'travel_wishlist/visited.html', { 'visited': visited } )
+
 def about(request):
     author = 'Noelle'
     about = 'A website to create a list of places to visit'
