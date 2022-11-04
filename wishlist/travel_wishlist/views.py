@@ -29,7 +29,7 @@ def place_was_visited(request, place_pk):
         place.visited = True
         place.saved()  #must save or it will not save
 
-    return redirect('place_list')
+    return redirect('place_list')  #take me to page when i click the button/submit datalllllllllllllll
     # return redirect('places_visited')
 
 
