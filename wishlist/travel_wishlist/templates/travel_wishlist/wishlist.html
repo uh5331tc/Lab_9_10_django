@@ -1,18 +1,20 @@
-<h2>Travel Wishlist</h2>
+{% extends 'travel_wishlist/base.html' %}
+    
+h2>Travel Wishlist</h2>
 
 <form method="POST" action="{% url 'place_list' %}">
     {% csrf_token %}
     {{ new_place_form }}
-    <button type="submit">Add</button>
+    <button id="add-new-place" type="submit">Add</button>
 </form>
 
 
 { % for place in places % }
 
-<div>
+<div class="wishlist-place">
 
-    {{ place.name  }}
-    <form method="POST" action="{% url 'place_was_visited' place.pk %}">
+    <span class="place-name">  {{ place.name }}</span>
+    <form class="visited-form" method="POST" action="{% url 'place_was_visited' place.pk %}">
         {% csrf_token %}
     <button>Visited!</button>
     </form>
@@ -26,4 +28,4 @@ You have no places in your wishlist.</p>
 
 { % endfor % }
 
-<a href="{% url 'places_visited' %}"> Places you've visited </a>
+<!--moved to base.html <a href="{% url 'places_visited' %}"> Places you've visited </a>  -->
