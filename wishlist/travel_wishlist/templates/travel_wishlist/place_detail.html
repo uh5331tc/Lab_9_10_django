@@ -1,4 +1,6 @@
 {% extends 'travel_wishlist/base.html' %}
+{% load static %}  
+
 {% block content %}
 <h2>
     {{place.name}}
@@ -9,18 +11,16 @@
 {% else %}
     <p>YOu have not visited {{ place.name }}</p>
 
+
+{% endif %}
+ 
     <form action="{% url 'place_was_visited' place.pk" %} method="POST">
         {% csrf_token %} <!-- Security that prevents others from resubiting forms or requests on our behalf -->
         <button type="submit" class="visited">Visited!</button>
     </form>
 
 
-
-{% endif %}
-
-<form action="{%  %}"
-
-
+<script src="{% static 'js/confirm_delete.js' %} "></script>
 
 
 {% endblock %}
