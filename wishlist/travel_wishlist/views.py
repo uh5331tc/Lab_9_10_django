@@ -51,10 +51,33 @@ def about(request):
     about = 'A website to create a list of places to visit'
     return render(request, 'travel_wishlist/about.html', {'author': author, 'about': about})
 
-@login_required
+
+@login_required  
 def place_details(request, place_pk):
     place = get_object_or_404(Place, pk=place_pk)
-    return render(request, 'travel_wishlist/place_detail.html', {'place': place})
+
+    #does this place belong to the current user, data privacy
+    if place.user != request.user:
+        return HttpResponseForbidden()
+#is this a GET request (show data +form) or a POST Request(update Place object)?
+#if POST validate form data and update
+    if request.method == 'POST':
+        form = TripReviewForm(request.POST, request.FILES, isinstance=place)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Trip Information Updated!')
+        else: 
+            messages.error(request, form.errors) #temp rewrite later
+        return redirect('place_details', place_pk=place_pk)
+    
+#if GET  show place info and form  
+    else:
+        if place.visited: 
+            review_form = TripReviewForm(instance=place)
+        return render(request, 'travel_wishlist/place_detail.html', {'place': place, 'review_form': review_form })
+    else: #not sending the form 
+        return render(request, 'travel_wishlist/place_detail.html', {'place': place})
+
 
 @login_required
 def delete_place(request, place_pk):
