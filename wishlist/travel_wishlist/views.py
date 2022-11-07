@@ -17,17 +17,17 @@ def place_list(request):
     new_place_form = NewPlaceForm()
     return render (request, 'travel_wishlist/wishlist.html', {'places': places, 'new_place_form': new_place_form})
 
-def places_visited(request):
+def places_visited(request): #db is querried for visited and returns a template with data from db
     visited = Place.objects.filter(visited=True)
     return render(request, 'travel_wishlist/visited.html', { 'visited': visited } )
 
-def place_was_visited(request, place_pk):
+def place_was_visited(request, place_pk): #place_pk is an argument
     if request.method == 'POST':
         #from django.shortcuts import get_object_or_404
          #place = Place.objects.get(pk=place_pk)  
         place = get_object_or_404(Place, pk=place_pk)
         place.visited = True
-        place.saved()  #must save or it will not save
+        place.save()  #must save or it will not save
 
     return redirect('place_list')  #take me to page when i click the button/submit datalllllllllllllll
     # return redirect('places_visited')

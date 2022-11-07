@@ -10,12 +10,13 @@ h2>Travel Wishlist</h2>
 
 
 { % for place in places % }
-
+<!--builds the URL and provide the place.pk one or many and become part of the URL 
+it will talk to urls.py and generate the right URL and the right request will be made-->
 <div class="wishlist-place">
-    <span id="place-name({ place.pk })" class="place-name">  {{ place.name }}</span>  <!--#given id so selenium can identify -->
+    <span id="place-name-{{ place.pk }}" class="place-name">{{ place.name }}</span>  <!--#given id so selenium can identify -->
     <form class="visited-form" method="POST" action="{% url 'place_was_visited' place.pk %}">
         {% csrf_token %}
-    <button id="visited-button-({ place.pk })">Visited!</button>  <!--#given id so selenium can identify -->
+        <button id="visited-button-{{ place.pk }}" type="submit">Visited!</button>  <!--#given id so selenium can identify -->
     </form>
 
 </div>
