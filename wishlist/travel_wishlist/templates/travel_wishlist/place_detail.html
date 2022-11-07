@@ -1,0 +1,26 @@
+{% extends 'travel_wishlist/base.html' %}
+{% block content %}
+<h2>
+    {{place.name}}
+</h2>
+
+{% place.visited %}
+    <p> YOu have visited {{ place.name }}</p>
+{% else %}
+    <p>YOu have not visited {{ place.name }}</p>
+
+    <form action="{% url 'place_was_visited' place.pk" %} method="POST">
+        {% csrf_token %} <!-- Security that prevents others from resubiting forms or requests on our behalf -->
+        <button type="submit" class="visited">Visited!</button>
+    </form>
+
+
+
+{% endif %}
+
+<form action="{%  %}"
+
+
+
+
+{% endblock %}
