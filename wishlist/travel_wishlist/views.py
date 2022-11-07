@@ -62,18 +62,18 @@ def place_details(request, place_pk):
 #is this a GET request (show data +form) or a POST Request(update Place object)?
 #if POST validate form data and update
     if request.method == 'POST':
-        form = TripReviewForm(request.POST, request.FILES, isinstance=place)
+        form = TripReviewForm(request.POST, request.FILES, isinstance=place)  #errors
         if form.is_valid():
             form.save()
-            messages.info(request, 'Trip Information Updated!')
+            messages.info(request, 'Trip Information Updated!')  #errors
         else: 
-            messages.error(request, form.errors) #temp rewrite later
+            messages.error(request, form.errors) #temp rewrite later  #errors
         return redirect('place_details', place_pk=place_pk)
     
 #if GET  show place info and form  
     else:
         if place.visited: 
-            review_form = TripReviewForm(instance=place)
+            review_form = TripReviewForm(instance=place)  #errors
         return render(request, 'travel_wishlist/place_detail.html', {'place': place, 'review_form': review_form })
     else: #not sending the form 
         return render(request, 'travel_wishlist/place_detail.html', {'place': place})
