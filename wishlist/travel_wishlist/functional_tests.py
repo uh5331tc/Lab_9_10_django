@@ -1,7 +1,7 @@
 #functional tests are much more realistic but slower. tests to see if its functional, but not if its coreectly functioning
 #unit/integration tests more server code, not UI
 
-from selenium.webdriver.chrome.webdriver import WebDriver 
+from selenium.webdriver.chrome.webdriver import WebDriver  #WHERE DO I SAVE THIS SO SELIUNUM CAN FIND IT
 from django.test import LifeServerTestCse
 
 class TitleTest(LifeServerTestCse): 
