@@ -119,6 +119,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Default primary key field type
+
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#adding last 2 lines from slide 59/71 ch. 10
+MEDIA_URL = '/media/' #Media URL for user created media-becomes part of the URL when images are displayed
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#where in the file system to save user-uploaded files
